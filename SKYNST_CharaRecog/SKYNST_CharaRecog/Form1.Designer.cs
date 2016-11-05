@@ -36,22 +36,25 @@
             this.textBox_pass = new System.Windows.Forms.TextBox();
             this.textBox_result = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.checkBox_eng = new System.Windows.Forms.CheckBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.フォルダから参照BToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.カメラ起動CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.出力OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.閉じるToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.編集ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.トリミングTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.戻るToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.進むToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.バージョン情報ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_show = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.戻るToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.進むToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.radioButton_jpn = new System.Windows.Forms.RadioButton();
+            this.radioButton_eng = new System.Windows.Forms.RadioButton();
+            this.radioButton_all = new System.Windows.Forms.RadioButton();
+            this.button_readout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -125,17 +128,8 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // checkBox_eng
-            // 
-            this.checkBox_eng.AutoSize = true;
-            this.checkBox_eng.Location = new System.Drawing.Point(230, 409);
-            this.checkBox_eng.Name = "checkBox_eng";
-            this.checkBox_eng.Size = new System.Drawing.Size(61, 16);
-            this.checkBox_eng.TabIndex = 11;
-            this.checkBox_eng.Text = "English";
-            this.checkBox_eng.UseVisualStyleBackColor = true;
+            this.openFileDialog1.FileName = "ファイルを選択して下さい";
+            this.openFileDialog1.Title = "開くファイルを選択して下さい";
             // 
             // menuStrip1
             // 
@@ -183,6 +177,11 @@
             this.出力OToolStripMenuItem.Text = "保存(&S)...";
             this.出力OToolStripMenuItem.Click += new System.EventHandler(this.出力OToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(199, 6);
+            // 
             // 閉じるToolStripMenuItem
             // 
             this.閉じるToolStripMenuItem.Name = "閉じるToolStripMenuItem";
@@ -208,6 +207,22 @@
             this.トリミングTToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.トリミングTToolStripMenuItem.Text = "トリミング(&T)...";
             this.トリミングTToolStripMenuItem.Click += new System.EventHandler(this.トリミングTToolStripMenuItem_Click);
+            // 
+            // 戻るToolStripMenuItem
+            // 
+            this.戻るToolStripMenuItem.Name = "戻るToolStripMenuItem";
+            this.戻るToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.戻るToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.戻るToolStripMenuItem.Text = "元に戻す(&U)";
+            this.戻るToolStripMenuItem.Click += new System.EventHandler(this.戻るToolStripMenuItem_Click);
+            // 
+            // 進むToolStripMenuItem
+            // 
+            this.進むToolStripMenuItem.Name = "進むToolStripMenuItem";
+            this.進むToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
+            this.進むToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.進むToolStripMenuItem.Text = "やり直し(&R)";
+            this.進むToolStripMenuItem.Click += new System.EventHandler(this.進むToolStripMenuItem_Click);
             // 
             // HelpToolStripMenuItem
             // 
@@ -243,36 +258,60 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "プレビュー";
             // 
-            // toolStripMenuItem2
+            // radioButton_jpn
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(199, 6);
+            this.radioButton_jpn.AutoSize = true;
+            this.radioButton_jpn.Location = new System.Drawing.Point(232, 405);
+            this.radioButton_jpn.Name = "radioButton_jpn";
+            this.radioButton_jpn.Size = new System.Drawing.Size(59, 16);
+            this.radioButton_jpn.TabIndex = 14;
+            this.radioButton_jpn.TabStop = true;
+            this.radioButton_jpn.Text = "日本語";
+            this.radioButton_jpn.UseVisualStyleBackColor = true;
             // 
-            // 戻るToolStripMenuItem
+            // radioButton_eng
             // 
-            this.戻るToolStripMenuItem.Name = "戻るToolStripMenuItem";
-            this.戻るToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.戻るToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.戻るToolStripMenuItem.Text = "元に戻す(&U)";
-            this.戻るToolStripMenuItem.Click += new System.EventHandler(this.戻るToolStripMenuItem_Click);
+            this.radioButton_eng.AutoSize = true;
+            this.radioButton_eng.Location = new System.Drawing.Point(166, 405);
+            this.radioButton_eng.Name = "radioButton_eng";
+            this.radioButton_eng.Size = new System.Drawing.Size(60, 16);
+            this.radioButton_eng.TabIndex = 14;
+            this.radioButton_eng.TabStop = true;
+            this.radioButton_eng.Text = "English";
+            this.radioButton_eng.UseVisualStyleBackColor = true;
             // 
-            // 進むToolStripMenuItem
+            // radioButton_all
             // 
-            this.進むToolStripMenuItem.Name = "進むToolStripMenuItem";
-            this.進むToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.進むToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.進むToolStripMenuItem.Text = "やり直し(&R)";
-            this.進むToolStripMenuItem.Click += new System.EventHandler(this.進むToolStripMenuItem_Click);
+            this.radioButton_all.AutoSize = true;
+            this.radioButton_all.Location = new System.Drawing.Point(116, 405);
+            this.radioButton_all.Name = "radioButton_all";
+            this.radioButton_all.Size = new System.Drawing.Size(44, 16);
+            this.radioButton_all.TabIndex = 14;
+            this.radioButton_all.TabStop = true;
+            this.radioButton_all.Text = "全て";
+            this.radioButton_all.UseVisualStyleBackColor = true;
+            // 
+            // button_readout
+            // 
+            this.button_readout.Location = new System.Drawing.Point(297, 466);
+            this.button_readout.Name = "button_readout";
+            this.button_readout.Size = new System.Drawing.Size(75, 23);
+            this.button_readout.TabIndex = 6;
+            this.button_readout.Text = "読み上げ";
+            this.button_readout.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 524);
+            this.Controls.Add(this.radioButton_all);
+            this.Controls.Add(this.radioButton_eng);
+            this.Controls.Add(this.radioButton_jpn);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.checkBox_eng);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.button_start);
+            this.Controls.Add(this.button_readout);
             this.Controls.Add(this.button_output);
             this.Controls.Add(this.button_webcam);
             this.Controls.Add(this.button_show);
@@ -282,6 +321,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
             this.Text = "文字認識システム";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -300,7 +340,6 @@
         private System.Windows.Forms.TextBox textBox_pass;
         private System.Windows.Forms.TextBox textBox_result;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.CheckBox checkBox_eng;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem バージョン情報ToolStripMenuItem;
@@ -317,6 +356,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem 戻るToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 進むToolStripMenuItem;
+        private System.Windows.Forms.RadioButton radioButton_jpn;
+        private System.Windows.Forms.RadioButton radioButton_eng;
+        private System.Windows.Forms.RadioButton radioButton_all;
+        private System.Windows.Forms.Button button_readout;
 
     }
 }

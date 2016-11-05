@@ -219,7 +219,7 @@ namespace SKYNST_CharaRecog
 
         private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            version_info();
         }
 
 
@@ -261,7 +261,7 @@ namespace SKYNST_CharaRecog
             return true;
         }
 
-
+        
         //●ウェブカメラフォームを起動するメソッド
         private void webcam_open()
         {
@@ -364,7 +364,7 @@ namespace SKYNST_CharaRecog
         {
             //文字認識結果を格納する変数
             string str;
-
+            
             // OCRを行うオブジェクトの生成
             //  言語データの場所と言語名を引数で指定する
             var tesseract = new Tesseract.TesseractEngine(
@@ -421,5 +421,10 @@ namespace SKYNST_CharaRecog
         }
 
         // ●各UIのEnable操作を行うメソッド
+        private void version_info() 
+        {
+            MessageBox.Show("文字認識システム\nVersion1.0\nSKYNST (System Knowledge Young geNeration Student Team)", "バージョン情報", MessageBoxButtons.OK);
+        }
+
     }
 }

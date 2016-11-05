@@ -12,7 +12,8 @@ namespace SKYNST_CharaRecog
 {
     public partial class Form1 : Form
     {
-        /*================ グローバル変数 ================*/　//15行目
+        /*================ グローバル変数 ================*/
+        //15行目
 
         public static Bitmap image = null;// 読み込んだ画像を格納する変数
 
@@ -24,10 +25,11 @@ namespace SKYNST_CharaRecog
 
 
 
-        
 
 
-        /*================================================*/  //30行目
+
+        /*================================================*/
+        //30行目
 
 
         //●コンストラクタ
@@ -47,7 +49,6 @@ namespace SKYNST_CharaRecog
             radioButton_all.Enabled = false;
             radioButton_eng.Enabled = false;
             radioButton_jpn.Enabled = false;//初期状態では、各ラジオボタンを不可にする
-            
 
 
 
@@ -58,8 +59,6 @@ namespace SKYNST_CharaRecog
 
 
 
-            
-            
 
 
 
@@ -70,10 +69,10 @@ namespace SKYNST_CharaRecog
 
         //●フォームを閉じる場合の処理
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
+        {//70行目
             DialogResult result;
             // 保存をしたかどうかを判定する
-            if(save_flag == 1)
+            if (save_flag == 1)
             {
                 // →保存前ならば、ポップアップで保存確認
                 result = MessageBox.Show("出力を保存しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
@@ -100,11 +99,14 @@ namespace SKYNST_CharaRecog
                 // →保存後（あるいは保存不要）ならば、終了メッセージボックスを出す
                 if (quit() == false) e.Cancel = true;//キャンセルならば、終了しない
             }
-        }
+        }//100行目
+
+
+        //================ ↓以下、各UIのイベント↓ ================
 
         //●『カメラ起動』ボタン：クリックイベント
         private void button_webcam_Click(object sender, EventArgs e)
-        {//71行目
+        {
             //ウェブカメラフォームを起動する
             webcam_open();
 
@@ -115,53 +117,11 @@ namespace SKYNST_CharaRecog
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-            
-
-
-
-            
-
-
-
-
-
-
-            
-
-
-
-
-              
-          
-            
-
-
-
-
-
-
-
-
-
-
-
-        }//123行目
-
+        }//118行目
 
         //●『参照』ボタン：クリックイベント
         private void button_brows_Click(object sender, EventArgs e)
-        {//128行目
+        {
             //参照フォームを起動する
             brows_open();
 
@@ -172,55 +132,13 @@ namespace SKYNST_CharaRecog
 
 
 
-            
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-            
-            
-
-
-
-        }//180行目
-        
+        }//133行目     
 
         //●『画像表示』ボタン：クリックイベント
         private void button_show_Click(object sender, EventArgs e)
-        {//185行目
+        {
             // 入力されたパスの画像をピクチャボックスに表示する
-            if(!(image_show()))
+            if (!(image_show()))
             {
                 return;//画像の読み込みに失敗した場合、このイベントを終了する
             }
@@ -229,114 +147,29 @@ namespace SKYNST_CharaRecog
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-
-
-
-        }//237行目
-        
+        }//148行目
 
         //●『出力』ボタン：クリックイベント
         private void button_output_Click(object sender, EventArgs e)
-        {//242行目
+        {
+            //保存フォームを開く
             save();
 
 
 
 
-            
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        }//294行目
-
+        }//163行目
 
         //●『解析』ボタン：クリックイベント
         private void button_start_Click(object sender, EventArgs e)
-        {//299行目
+        {
             //文字認識処理を開始する
             chara_recog_start(image);
 
-            
 
 
 
@@ -344,49 +177,10 @@ namespace SKYNST_CharaRecog
 
 
 
+        }//178行目
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-
-
-
-        }//350行目
-
-
-        /*================ メニューバーのイベント ================*/
+        /*================ ↓メニューバーのイベント↓ ================*/
 
         private void フォルダから参照BToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -427,7 +221,7 @@ namespace SKYNST_CharaRecog
         {
 
         }
-        
+
 
         /*================ 以下、自作のメソッド ================*/
 
@@ -455,7 +249,7 @@ namespace SKYNST_CharaRecog
             radioButton_jpn.Enabled = true;
             //『全て』ラジオボタンにチェックマークを付ける
             radioButton_all.Checked = true;
-            
+
             //解析ボタンを押下可能にする;
             button_start.Enabled = true;
 
@@ -467,14 +261,15 @@ namespace SKYNST_CharaRecog
             return true;
         }
 
+
         //●ウェブカメラフォームを起動するメソッド
         private void webcam_open()
         {
             Form2 fo2 = new Form2();//インスタンス生成
             //Form2オープン、Form1は操作不能にする
-            if (fo2.ShowDialog(this) == DialogResult.OK) {  }
+            if (fo2.ShowDialog(this) == DialogResult.OK) { }
             else { /*オープンエラー処理が必要ならば書く*/ }
-            
+
             fo2.Dispose();//リソースを開放
 
             if (image != null)//imageに画像が入力されていたら画像表示
@@ -498,6 +293,7 @@ namespace SKYNST_CharaRecog
             button_readout.Enabled = false;
         }
 
+
         //●参照フォームを起動するメソッド
         private void brows_open()
         {
@@ -510,7 +306,7 @@ namespace SKYNST_CharaRecog
                 //ディレクトリパスを入力するフォームに参照したパスを入力する
                 textBox_pass.Text = openFileDialog1.FileName;
             }
-            else if(dr == DialogResult.Cancel)
+            else if (dr == DialogResult.Cancel)
             {
                 //キャンセルが押されたらfalseを返して終了する
                 return;
@@ -523,6 +319,7 @@ namespace SKYNST_CharaRecog
                 return;
             }
         }
+
 
         //●文字認識を行うメソッド
         //・引数    Bitmap img：文字認識処理対象の画像を指定する
@@ -558,29 +355,30 @@ namespace SKYNST_CharaRecog
             //保存フラグを1（保存前）にする
             save_flag = 1;
         }//311行
-        
-                //●文字認識処理
-                //・引数  Bitmap img ：文字認識処理対象の画像を指定する
-                //        string lang：文字認識処理を行う言語を指定する
-                //・戻り値：文字認識処理結果
-                private string chara_recog(Bitmap img, string lang)
-                {
-                    //文字認識結果を格納する変数
-                    string str;
 
-                    // OCRを行うオブジェクトの生成
-                    //  言語データの場所と言語名を引数で指定する
-                    var tesseract = new Tesseract.TesseractEngine(
-                        @"..\..\..\tessdata", // 言語ファイルを「C:\tessdata」に置いた場合
-                        lang);         // 英語なら"eng" 「○○.traineddata」の○○の部分
+        //●文字認識処理
+        //・引数  Bitmap img ：文字認識処理対象の画像を指定する
+        //        string lang：文字認識処理を行う言語を指定する
+        //・戻り値：文字認識処理結果
+        private string chara_recog(Bitmap img, string lang)
+        {
+            //文字認識結果を格納する変数
+            string str;
 
-                    // OCRの実行と表示
-                    var page = tesseract.Process(img);
-                    str = page.GetText();
+            // OCRを行うオブジェクトの生成
+            //  言語データの場所と言語名を引数で指定する
+            var tesseract = new Tesseract.TesseractEngine(
+                @"..\..\..\tessdata", // 言語ファイルを「C:\tessdata」に置いた場合
+                lang);         // 英語なら"eng" 「○○.traineddata」の○○の部分
 
-                    //文字認識結果を返す
-                    return str;
-                }//311行
+            // OCRの実行と表示
+            var page = tesseract.Process(img);
+            str = page.GetText();
+
+            //文字認識結果を返す
+            return str;
+        }//311行
+
 
         //●ファイル出力（保存）を行うメソッド
         private void save()
@@ -609,6 +407,7 @@ namespace SKYNST_CharaRecog
             }
         }
 
+
         // ●終了確認を行うメソッド
         private bool quit()
         {
@@ -620,5 +419,7 @@ namespace SKYNST_CharaRecog
             }
             return true;
         }
+
+        // ●各UIのEnable操作を行うメソッド
     }
 }

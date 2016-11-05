@@ -33,7 +33,10 @@
 
 #### フレームワーク・ライブラリ・モジュール
 * OpenCV
-* 
+* tesseract-ocr
+* AForge.NET Framework
+    AForge.Controls
+    AForge.Video.DirectShow
 
 #### デバイス
 * PC

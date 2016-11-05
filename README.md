@@ -1,1 +1,2 @@
-# chara_recog2
+# chara_recog
+文字認識システム

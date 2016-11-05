@@ -408,6 +408,7 @@ namespace SKYNST_CharaRecog
         }
 
 
+
         // ●終了確認を行うメソッド
         private bool quit()
         {
@@ -418,6 +419,21 @@ namespace SKYNST_CharaRecog
                 return false;
             }
             return true;
+        }
+
+        // ●読み上げを行うメソッド
+        private void button_readout_Click(object sender, EventArgs e)
+        {
+            if (System.Diagnostics.Process.GetProcessesByName("BouyomiChan").Length <= 0)//棒読みちゃん起動していなければ起動
+            {
+                System.Diagnostics.Process p = System.Diagnostics.Process.Start(@"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\BouyomiChan.exe");
+                System.Threading.Thread.Sleep(5000);
+            }
+            System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo();
+            psi.FileName = @"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\RemoteTalk\RemoteTalk.exe";
+            psi.Arguments = String.Format("/T {0}", textBox_result.Text);
+            psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            System.Diagnostics.Process q = System.Diagnostics.Process.Start(psi);
         }
 
         // ●各UIのEnable操作を行うメソッド

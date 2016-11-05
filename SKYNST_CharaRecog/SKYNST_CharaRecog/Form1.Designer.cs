@@ -112,11 +112,14 @@
             // 
             // textBox_pass
             // 
+            this.textBox_pass.AllowDrop = true;
             this.textBox_pass.Location = new System.Drawing.Point(12, 59);
             this.textBox_pass.Name = "textBox_pass";
             this.textBox_pass.Size = new System.Drawing.Size(266, 19);
             this.textBox_pass.TabIndex = 3;
             this.textBox_pass.Text = "C:\\.....";
+            this.textBox_pass.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBox_pass_DragDrop);
+            this.textBox_pass.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBox_pass_DragEnter);
             // 
             // textBox_result
             // 
@@ -302,6 +305,7 @@
             // 
             // Form1
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 524);
@@ -324,6 +328,8 @@
             this.Name = "Form1";
             this.Text = "文字認識システム";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

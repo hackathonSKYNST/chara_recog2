@@ -39,7 +39,8 @@ namespace SKYNST_CharaRecog
 
             button_start.Enabled = false;//初期状態では、解析ボタンを不可にする
 
-            button_output.Enabled = false;//初期状態では、保存ボタンを不可にする
+            button_output.Enabled = false;
+            出力OToolStripMenuItem.Enabled = false;//初期状態では、保存ボタンを不可にする
 
             button_readout.Enabled = false;//初期状態では、読み上げボタンを不可にする
 
@@ -404,7 +405,7 @@ namespace SKYNST_CharaRecog
 
         private void 閉じるToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void トリミングTToolStripMenuItem_Click(object sender, EventArgs e)
@@ -460,6 +461,7 @@ namespace SKYNST_CharaRecog
 
             //出力ボタン・読み上げボタンを押下不可にする
             button_output.Enabled = false;
+            出力OToolStripMenuItem.Enabled = false;
             button_readout.Enabled = false;
 
             return true;
@@ -492,6 +494,7 @@ namespace SKYNST_CharaRecog
 
             //出力ボタン・読み上げボタンを押下不可にする
             button_output.Enabled = false;
+            出力OToolStripMenuItem.Enabled = false;
             button_readout.Enabled = false;
         }
 
@@ -548,6 +551,7 @@ namespace SKYNST_CharaRecog
 
             //出力ボタンを押下可能にする
             button_output.Enabled = true;
+            出力OToolStripMenuItem.Enabled = true;
             //読み上げボタンを押下可能にする
             button_readout.Enabled = true;
 

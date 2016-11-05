@@ -82,6 +82,8 @@
             this.Controls.Add(this.button_cansel);
             this.Controls.Add(this.Start_Camera);
             this.Controls.Add(this.button_chapture);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form2";
             this.Text = "カメラフォーム";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);

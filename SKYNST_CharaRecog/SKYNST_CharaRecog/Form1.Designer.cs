@@ -139,7 +139,7 @@
             this.HelpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(384, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(384, 26);
             this.menuStrip1.TabIndex = 12;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -197,7 +197,7 @@
             this.戻るToolStripMenuItem,
             this.進むToolStripMenuItem});
             this.編集ToolStripMenuItem.Name = "編集ToolStripMenuItem";
-            this.編集ToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.編集ToolStripMenuItem.Size = new System.Drawing.Size(61, 22);
             this.編集ToolStripMenuItem.Text = "編集(&E)";
             // 
             // トリミングTToolStripMenuItem
@@ -229,7 +229,7 @@
             this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.バージョン情報ToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
-            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(75, 22);
             this.HelpToolStripMenuItem.Text = "ヘルプ(&H)";
             // 
             // バージョン情報ToolStripMenuItem
@@ -323,11 +323,13 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "文字認識システム";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

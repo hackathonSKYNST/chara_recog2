@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -204,7 +204,7 @@ namespace SKYNST_CharaRecog
             }
         }
         //――――――――――――――――――――――――――――――――
-
+        //207行目
 
         /*================ ↓点字処理のイベント↓ ================*/
 
@@ -261,6 +261,7 @@ namespace SKYNST_CharaRecog
 
 
 
+        
 
 
 
@@ -276,6 +277,7 @@ namespace SKYNST_CharaRecog
 
 
 
+        
 
 
 
@@ -301,6 +303,7 @@ namespace SKYNST_CharaRecog
 
 
 
+        
 
 
 
@@ -603,10 +606,7 @@ namespace SKYNST_CharaRecog
 
 
 
-
-
-
-        /*================ ↓以下、各UIのイベント↓ ================*/
+    /*================ ↓以下、各UIのイベント↓ ================*/
 
         //611行
 
@@ -725,7 +725,7 @@ namespace SKYNST_CharaRecog
 
         private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            version_info();
         }
 
 
@@ -933,7 +933,26 @@ namespace SKYNST_CharaRecog
             }
         }
 
+        // ●バージョン情報を表示するメソッド
+        private void version_info()
+        {
+            MessageBox.Show("文字認識システム\nVersion1.0\nSKYNST (System Knowledge Young geNeration Student Team)", "バージョン情報", MessageBoxButtons.OK);
+        }
 
+        // ●読み上げを行うメソッド
+        private void button_readout_Click(object sender, EventArgs e)
+        {
+            if (System.Diagnostics.Process.GetProcessesByName("BouyomiChan").Length <= 0)//棒読みちゃん起動していなければ起動
+            {
+                System.Diagnostics.Process p = System.Diagnostics.Process.Start(@"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\BouyomiChan.exe");
+                System.Threading.Thread.Sleep(5000);
+            }
+            System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo();
+            psi.FileName = @"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\RemoteTalk\RemoteTalk.exe";
+            psi.Arguments = String.Format("/T {0}", textBox_result.Text);
+            psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            System.Diagnostics.Process q = System.Diagnostics.Process.Start(psi);
+        }
 
 
 
@@ -982,26 +1001,7 @@ namespace SKYNST_CharaRecog
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 
@@ -1198,9 +1198,5 @@ namespace SKYNST_CharaRecog
 
 
         //1200行目
-
-
-
-
     }
 }

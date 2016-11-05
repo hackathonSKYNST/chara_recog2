@@ -34,6 +34,7 @@
 #### フレームワーク・ライブラリ・モジュール
 * OpenCV
 * tesseract-ocr
+* bouyomichan
 * AForge.NET Framework
     AForge.Controls
     AForge.Video.DirectShow

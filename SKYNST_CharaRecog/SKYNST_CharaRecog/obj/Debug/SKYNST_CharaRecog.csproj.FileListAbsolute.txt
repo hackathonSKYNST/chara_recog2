@@ -289,7 +289,6 @@ C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\bin\Debug\AForge
 C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\bin\Debug\AForge.Video.xml
 C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\bin\Debug\AForge.Video.DirectShow.xml
 C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\bin\Debug\OpenCvSharp.xml
-C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\bin\Debug\OpenCvSharp.Blob.xml
 C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\bin\Debug\OpenCvSharp.CPlusPlus.xml
 C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\bin\Debug\OpenCvSharp.Extensions.xml
 C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\bin\Debug\Tesseract.xml
@@ -298,3 +297,4 @@ C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\obj\Debug\SKYNST
 C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\obj\Debug\SKYNST_CharaRecog.Form2.resources
 C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\obj\Debug\SKYNST_CharaRecog.Properties.Resources.resources
 C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\obj\Debug\SKYNST_CharaRecog.csproj.GenerateResource.Cache
+C:\git\SKY_NST\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\bin\Debug\OpenCvSharp.Blob.xml

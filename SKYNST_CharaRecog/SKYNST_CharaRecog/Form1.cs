@@ -13,6 +13,7 @@ namespace SKYNST_CharaRecog
     public partial class Form1 : Form
     {
         /*================ グローバル変数 ================*/　//15行目
+
         public static Bitmap image = null;// 読み込んだ画像を格納する変数
 
         // 保存を行ったかどうかを管理するフラグ変数
@@ -24,8 +25,6 @@ namespace SKYNST_CharaRecog
 
 
         
-
-
 
 
         /*================================================*/  //30行目
@@ -172,9 +171,9 @@ namespace SKYNST_CharaRecog
 
 
 
+            
 
-
-
+            
 
 
 

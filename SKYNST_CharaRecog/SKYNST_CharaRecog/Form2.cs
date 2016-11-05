@@ -29,10 +29,12 @@ namespace SKYNST_CharaRecog
         //カメラ起動ボタンを押下
         private void Start_Camera_Click(object sender, EventArgs e)
         {
+            Camera_Format();
             var form = new VideoCaptureDeviceForm();
             // 選択ダイアログを開く
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                
                 // 選択されたデバイスをVideoSourcePlayerのソースに設定
                 videoSourcePlayer1.VideoSource = form.VideoDevice;
                 //Webカメラ起動でシャッターボタンを有効に
@@ -63,7 +65,12 @@ namespace SKYNST_CharaRecog
         //ウィンドウを閉じたときに呼び出される処理
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //Webカメラの後処理
+            Camera_Format();
+        }
+
+        private void Camera_Format() 
+        {
+            //Webカメラ初期化
             if (videoSourcePlayer1.VideoSource != null && videoSourcePlayer1.VideoSource.IsRunning)
             {
                 videoSourcePlayer1.VideoSource.SignalToStop();

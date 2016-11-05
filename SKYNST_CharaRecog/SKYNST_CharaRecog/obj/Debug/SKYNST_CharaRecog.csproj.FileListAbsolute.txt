@@ -298,3 +298,6 @@ C:\Users\壮大\Documents\jphack\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaReco
 C:\Users\壮大\Documents\jphack\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\obj\Debug\SKYNST_CharaRecog.Form2.resources
 C:\Users\壮大\Documents\jphack\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\obj\Debug\SKYNST_CharaRecog.Properties.Resources.resources
 C:\Users\壮大\Documents\jphack\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\obj\Debug\SKYNST_CharaRecog.csproj.GenerateResource.Cache
+C:\Users\hirotaka n\Desktop\Git\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\bin\Debug\SKYNST_CharaRecog.exe.config
+C:\Users\hirotaka n\Desktop\Git\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\obj\Debug\SKYNST_CharaRecog.exe
+C:\Users\hirotaka n\Desktop\Git\chara_recog2\SKYNST_CharaRecog\SKYNST_CharaRecog\obj\Debug\SKYNST_CharaRecog.pdb

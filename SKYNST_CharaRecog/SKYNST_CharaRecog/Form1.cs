@@ -65,6 +65,11 @@ namespace SKYNST_CharaRecog
 
         }//66行目
         
+        /*test
+         
+          
+          
+         */
 
         //●『カメラ起動』ボタン：クリックイベント
         private void button_webcam_Click(object sender, EventArgs e)

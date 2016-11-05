@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -219,7 +219,7 @@ namespace SKYNST_CharaRecog
 
         private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            version_info();
         }
 
 
@@ -261,7 +261,7 @@ namespace SKYNST_CharaRecog
             return true;
         }
 
-
+        
         //●ウェブカメラフォームを起動するメソッド
         private void webcam_open()
         {
@@ -364,7 +364,7 @@ namespace SKYNST_CharaRecog
         {
             //文字認識結果を格納する変数
             string str;
-
+            
             // OCRを行うオブジェクトの生成
             //  言語データの場所と言語名を引数で指定する
             var tesseract = new Tesseract.TesseractEngine(
@@ -407,20 +407,6 @@ namespace SKYNST_CharaRecog
             }
         }
 
-
-
-        // ●終了確認を行うメソッド
-        private bool quit()
-        {
-            // ポップアップで終了確認
-            DialogResult result = MessageBox.Show("終了しますか？", "確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            if (result == DialogResult.Cancel)
-            {
-                return false;
-            }
-            return true;
-        }
-
         // ●読み上げを行うメソッド
         private void button_readout_Click(object sender, EventArgs e)
         {
@@ -436,6 +422,24 @@ namespace SKYNST_CharaRecog
             System.Diagnostics.Process q = System.Diagnostics.Process.Start(psi);
         }
 
+
+        // ●終了確認を行うメソッド
+        private bool quit()
+        {
+            // ポップアップで終了確認
+            DialogResult result = MessageBox.Show("終了しますか？", "確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (result == DialogResult.Cancel)
+            {
+                return false;
+            }
+            return true;
+        }
+
         // ●各UIのEnable操作を行うメソッド
+        private void version_info() 
+        {
+            MessageBox.Show("文字認識システム\nVersion1.0\nSKYNST (System Knowledge Young geNeration Student Team)", "バージョン情報", MessageBoxButtons.OK);
+        }
+
     }
 }

@@ -53,6 +53,7 @@
             this.radioButton_eng = new System.Windows.Forms.RadioButton();
             this.radioButton_all = new System.Windows.Forms.RadioButton();
             this.button_readout = new System.Windows.Forms.Button();
+            this.tenji_export = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -284,12 +285,25 @@
             this.button_readout.UseVisualStyleBackColor = true;
             this.button_readout.Click += new System.EventHandler(this.button_readout_Click);
             // 
+            // tenji_export
+            // 
+            this.tenji_export.AutoSize = true;
+            this.tenji_export.Location = new System.Drawing.Point(297, 443);
+            this.tenji_export.Name = "tenji_export";
+            this.tenji_export.Size = new System.Drawing.Size(72, 16);
+            this.tenji_export.TabIndex = 15;
+            this.tenji_export.Text = "点字表記";
+            this.tenji_export.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tenji_export.UseVisualStyleBackColor = true;
+            this.tenji_export.CheckedChanged += new System.EventHandler(this.tenji_export_CheckedChanged);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 524);
+            this.Controls.Add(this.tenji_export);
             this.Controls.Add(this.radioButton_all);
             this.Controls.Add(this.radioButton_eng);
             this.Controls.Add(this.radioButton_jpn);
@@ -347,6 +361,7 @@
         private System.Windows.Forms.RadioButton radioButton_eng;
         private System.Windows.Forms.RadioButton radioButton_all;
         private System.Windows.Forms.Button button_readout;
+        private System.Windows.Forms.CheckBox tenji_export;
 
     }
 }

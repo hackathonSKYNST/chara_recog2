@@ -944,14 +944,17 @@ namespace SKYNST_CharaRecog
         {
             if (System.Diagnostics.Process.GetProcessesByName("BouyomiChan").Length <= 0)//棒読みちゃん起動していなければ起動
             {
-                System.Diagnostics.Process p = System.Diagnostics.Process.Start(@"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\BouyomiChan.exe");
+                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo();
+                psi.FileName = @"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\BouyomiChan.exe";
+                psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
+                System.Diagnostics.Process p = System.Diagnostics.Process.Start(psi);
                 System.Threading.Thread.Sleep(5000);
             }
-            System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo();
-            psi.FileName = @"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\RemoteTalk\RemoteTalk.exe";
-            psi.Arguments = String.Format("/T {0}", textBox_result.Text);
-            psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-            System.Diagnostics.Process q = System.Diagnostics.Process.Start(psi);
+            System.Diagnostics.ProcessStartInfo qsi = new System.Diagnostics.ProcessStartInfo();
+            qsi.FileName = @"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\RemoteTalk\RemoteTalk.exe";
+            qsi.Arguments = String.Format("/T {0}", textBox_result.Text);
+            qsi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            System.Diagnostics.Process q = System.Diagnostics.Process.Start(qsi);
         }
 
 

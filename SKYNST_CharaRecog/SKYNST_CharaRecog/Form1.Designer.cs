@@ -45,6 +45,8 @@
             this.閉じるToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.編集ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.トリミングTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.解析AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.読み上げRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.バージョン情報ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_show = new System.Windows.Forms.Button();
@@ -54,6 +56,7 @@
             this.radioButton_all = new System.Windows.Forms.RadioButton();
             this.button_readout = new System.Windows.Forms.Button();
             this.tenji_export = new System.Windows.Forms.CheckBox();
+            this.button_trimming = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -195,7 +198,9 @@
             // 編集ToolStripMenuItem
             // 
             this.編集ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.トリミングTToolStripMenuItem});
+            this.トリミングTToolStripMenuItem,
+            this.解析AToolStripMenuItem,
+            this.読み上げRToolStripMenuItem});
             this.編集ToolStripMenuItem.Name = "編集ToolStripMenuItem";
             this.編集ToolStripMenuItem.Size = new System.Drawing.Size(61, 22);
             this.編集ToolStripMenuItem.Text = "編集(&E)";
@@ -207,6 +212,20 @@
             this.トリミングTToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.トリミングTToolStripMenuItem.Text = "トリミング(&T)...";
             this.トリミングTToolStripMenuItem.Click += new System.EventHandler(this.トリミングTToolStripMenuItem_Click);
+            // 
+            // 解析AToolStripMenuItem
+            // 
+            this.解析AToolStripMenuItem.Name = "解析AToolStripMenuItem";
+            this.解析AToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.解析AToolStripMenuItem.Text = "解析(&A)";
+            this.解析AToolStripMenuItem.Click += new System.EventHandler(this.解析AToolStripMenuItem_Click);
+            // 
+            // 読み上げRToolStripMenuItem
+            // 
+            this.読み上げRToolStripMenuItem.Name = "読み上げRToolStripMenuItem";
+            this.読み上げRToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.読み上げRToolStripMenuItem.Text = "読み上げ(&R)...";
+            this.読み上げRToolStripMenuItem.Click += new System.EventHandler(this.読み上げRToolStripMenuItem_Click);
             // 
             // HelpToolStripMenuItem
             // 
@@ -297,6 +316,16 @@
             this.tenji_export.UseVisualStyleBackColor = true;
             this.tenji_export.CheckedChanged += new System.EventHandler(this.tenji_export_CheckedChanged);
             // 
+            // button_trimming
+            // 
+            this.button_trimming.Location = new System.Drawing.Point(14, 402);
+            this.button_trimming.Name = "button_trimming";
+            this.button_trimming.Size = new System.Drawing.Size(75, 23);
+            this.button_trimming.TabIndex = 5;
+            this.button_trimming.Text = "トリミング";
+            this.button_trimming.UseVisualStyleBackColor = true;
+            this.button_trimming.Click += new System.EventHandler(this.button_trimming_Click);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -309,6 +338,7 @@
             this.Controls.Add(this.radioButton_jpn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.button_trimming);
             this.Controls.Add(this.button_start);
             this.Controls.Add(this.button_readout);
             this.Controls.Add(this.button_output);
@@ -322,6 +352,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "文字認識システム";
+            this.Activated += new System.EventHandler(this.Form1_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
@@ -362,6 +393,9 @@
         private System.Windows.Forms.RadioButton radioButton_all;
         private System.Windows.Forms.Button button_readout;
         private System.Windows.Forms.CheckBox tenji_export;
+        private System.Windows.Forms.Button button_trimming;
+        private System.Windows.Forms.ToolStripMenuItem 解析AToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 読み上げRToolStripMenuItem;
 
     }
 }

@@ -27,8 +27,8 @@ namespace SKYNST_CharaRecog
         [System.Runtime.InteropServices.DllImport("gdi32.dll", ExactSpelling = true)]
         private static extern IntPtr AddFontMemResourceEx(byte[] pbFont, int cbFont, IntPtr pdv, out uint pcFonts);
         System.Drawing.Text.PrivateFontCollection pfc = new System.Drawing.Text.PrivateFontCollection();//PrivateFontCollectionオブジェクトを作成する
-        
 
+        
 
 
 
@@ -121,6 +121,10 @@ namespace SKYNST_CharaRecog
             }
         }//120行目
 
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            pictureBox.Image = image;
+        }//127行目
 
 
 
@@ -135,11 +139,7 @@ namespace SKYNST_CharaRecog
 
 
 
-
-
-
-
-
+        
 
         /*================ ↓以下、各UIのイベント↓ ================*/
 
@@ -220,21 +220,27 @@ namespace SKYNST_CharaRecog
 
         }//221行目
 
+        //●『トリミング』ボタン：クリックイベント
+        private void button_trimming_Click(object sender, EventArgs e)
+        {
+            trimming_start();
+        }
+
+
+
+
+        // ●読み上げを行うメソッド
+        private void button_readout_Click(object sender, EventArgs e)
+        {
+            readout();
+        }
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
+        //237行目
         //●ドラッグアンドドロップの処理―――――――――――――――――
         private void textBox_pass_DragEnter(object sender, DragEventArgs e)
         {
@@ -347,18 +353,18 @@ namespace SKYNST_CharaRecog
 
         private void トリミングTToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            trimming_start();
         }
 
+        private void 解析AToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chara_recog_start(image);
+        }
 
-
-
-
-
-
-
-
-
+        private void 読み上げRToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            readout();
+        }
 
         private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -487,6 +493,8 @@ namespace SKYNST_CharaRecog
                 //処理フラグを1（解析後）にする
                 nowdo_flag = 1;
                 enable_change();
+
+                return;
             }
             catch (Exception e)
             {
@@ -539,7 +547,7 @@ namespace SKYNST_CharaRecog
             {
                 Encoding sjisEnc = Encoding.GetEncoding("Shift_JIS");
                 System.IO.StreamWriter writer = new System.IO.StreamWriter(@sfd.FileName, false, sjisEnc);
-                writer.WriteLine(textBox_result.Text);//ここにtesseractから送られてきた文字をぶち込む//
+                writer.WriteLine(normal_str);//ここにtesseractから送られてきた文字をぶち込む//
                 writer.Close();
 
                 // 処理フラグを2（保存後）にする
@@ -599,24 +607,6 @@ namespace SKYNST_CharaRecog
         private void version_info()
         {
             MessageBox.Show("文字認識システム\nVersion1.0\nSKYNST (System Knowledge Young geNeration Student Team)", "バージョン情報", MessageBoxButtons.OK);
-        }
-
-        // ●読み上げを行うメソッド
-        private void button_readout_Click(object sender, EventArgs e)
-        {
-            if (System.Diagnostics.Process.GetProcessesByName("BouyomiChan").Length <= 0)//棒読みちゃん起動していなければ起動
-            {
-                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo();
-                psi.FileName = @"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\BouyomiChan.exe";
-                psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
-                System.Diagnostics.Process p = System.Diagnostics.Process.Start(psi);
-                System.Threading.Thread.Sleep(5000);
-            }
-            System.Diagnostics.ProcessStartInfo qsi = new System.Diagnostics.ProcessStartInfo();
-            qsi.FileName = @"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\RemoteTalk\RemoteTalk.exe";
-            qsi.Arguments = String.Format("/T {0}", normal_str);
-            qsi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-            System.Diagnostics.Process q = System.Diagnostics.Process.Start(qsi);
         }
 
         /*================ ↓点字処理のイベント↓ ================*/
@@ -1418,16 +1408,31 @@ namespace SKYNST_CharaRecog
                 button_output.Enabled = true;
             }
         }
-        
 
 
+        // ●トリミング処理ウィンドウを開くメソッド
+        private void trimming_start()
+        {
+            Form3 f = new Form3();  // トリミングウィンドウを開く
+            f.ShowDialog();
+        }
 
-
-
-
-
-
-
+        private void readout()
+        {
+            if (System.Diagnostics.Process.GetProcessesByName("BouyomiChan").Length <= 0)//棒読みちゃん起動していなければ起動
+            {
+                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo();
+                psi.FileName = @"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\BouyomiChan.exe";
+                psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
+                System.Diagnostics.Process p = System.Diagnostics.Process.Start(psi);
+                System.Threading.Thread.Sleep(5000);
+            }
+            System.Diagnostics.ProcessStartInfo qsi = new System.Diagnostics.ProcessStartInfo();
+            qsi.FileName = @"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\RemoteTalk\RemoteTalk.exe";
+            qsi.Arguments = String.Format("/T {0}", normal_str);
+            qsi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            System.Diagnostics.Process q = System.Diagnostics.Process.Start(qsi);
+        }
 
 
 

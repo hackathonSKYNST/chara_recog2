@@ -160,11 +160,11 @@
     <Height>64</Height>
   </CompactSize>
   <NormalSize>
-    <Width>304</Width>
-    <Height>375</Height>
+    <Width>0</Width>
+    <Height>0</Height>
   </NormalSize>
   <XssFormMain>
-    <WindowState>Normal</WindowState>
+    <WindowState>Minimized</WindowState>
     <Top>198</Top>
     <Left>421</Left>
     <Width>320</Width>

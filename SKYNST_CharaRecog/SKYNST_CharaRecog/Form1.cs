@@ -812,18 +812,28 @@ namespace SKYNST_CharaRecog
             textBox_result.Text = "解析中...";
             this.Refresh();
 
-            //『English』のチェックボックスがチェックされているかの判定
-            if (radioButton_eng.Checked)
+            try
             {
-                // Englishにチェックが入っている
-                // →engの言語データで文字認識処理を行う
-                textBox_result.Text = chara_recog(img, "eng");
+                //『English』のチェックボックスがチェックされているかの判定
+                if (radioButton_eng.Checked)
+                {
+                    // Englishにチェックが入っている
+                    // →engの言語データで文字認識処理を行う
+                    textBox_result.Text = chara_recog(img, "eng");
+                }
+                else
+                {
+                    // Englishにチェックが入っていない
+                    // →jpnの言語データで文字認識処理を行う
+                    textBox_result.Text = chara_recog(img, "jpn");
+                }
             }
-            else
+            catch (Exception e)
             {
-                // Englishにチェックが入っていない
-                // →jpnの言語データで文字認識処理を行う
-                textBox_result.Text = chara_recog(img, "jpn");
+                // 読み込めない画像が入力された場合、エラーを出力
+                MessageBox.Show("例外が発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox_result.Text = "";// リザルトテキストを空にする
+                return;// メソッド終了
             }
 
             //処理が完了したことを知らせるメッセージボックスを表示
@@ -848,17 +858,10 @@ namespace SKYNST_CharaRecog
             var tesseract = new Tesseract.TesseractEngine(
                 @"..\..\..\tessdata", // 言語ファイルを「C:\tessdata」に置いた場合
                 lang);         // 英語なら"eng" 「○○.traineddata」の○○の部分
-
-            try
-            {   
-                // OCRの実行と表示
-                var page = tesseract.Process(img);
-                str = page.GetText();
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show("例外が発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+   
+            // OCRの実行と表示
+            var page = tesseract.Process(img);
+            str = page.GetText();
 
             //文字認識結果を返す
             return str;

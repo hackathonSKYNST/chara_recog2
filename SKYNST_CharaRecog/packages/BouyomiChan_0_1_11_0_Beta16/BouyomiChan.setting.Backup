@@ -150,7 +150,7 @@
     </VerOwn>
     <InfoNum>8</InfoNum>
     <InfoNumAlerted>8</InfoNumAlerted>
-    <PrvCheckTime>2016-11-05T17:45:50.8859486+09:00</PrvCheckTime>
+    <PrvCheckTime>2016-11-05T19:29:32.3192398+09:00</PrvCheckTime>
     <LastModified>2014-01-12T22:53:25+09:00</LastModified>
     <NotModified>true</NotModified>
     <CheckError>false</CheckError>
@@ -160,8 +160,8 @@
     <Height>64</Height>
   </CompactSize>
   <NormalSize>
-    <Width>312</Width>
-    <Height>386</Height>
+    <Width>304</Width>
+    <Height>375</Height>
   </NormalSize>
   <XssFormMain>
     <WindowState>Normal</WindowState>

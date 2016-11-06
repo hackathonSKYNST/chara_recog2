@@ -16,7 +16,6 @@ namespace SKYNST_CharaRecog
         //15行目
 
         public static Bitmap image = null;// 読み込んだ画像を格納する変数
-
         // 保存を行ったかどうかを管理するフラグ変数
         // 保存不要：0
         // 保存前　：1
@@ -28,13 +27,32 @@ namespace SKYNST_CharaRecog
         [System.Runtime.InteropServices.DllImport("gdi32.dll", ExactSpelling = true)]
         private static extern IntPtr AddFontMemResourceEx(byte[] pbFont, int cbFont, IntPtr pdv, out uint pcFonts);
         System.Drawing.Text.PrivateFontCollection pfc = new System.Drawing.Text.PrivateFontCollection();//PrivateFontCollectionオブジェクトを作成する
+        int nowdo_flag = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /*================================================*/
-        //30行目
+        //50行目
 
 
         //●コンストラクタ
         public Form1()
-        {//35行目
+        {//55行目
             InitializeComponent();
 
             this.textBox_result.ReadOnly = true;//文字認識処理結果のテキストボックスは編集不可
@@ -65,14 +83,14 @@ namespace SKYNST_CharaRecog
 
 
 
-        }//66行目
+        }//86行目
 
         //●フォームを閉じる場合の処理
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {//70行目
+        {
             DialogResult result;
             // 保存をしたかどうかを判定する
-            if (save_flag == 1)
+            if (nowdo_flag == 1)
             {
                 // →保存前ならば、ポップアップで保存確認
                 result = MessageBox.Show("出力を保存しますか？", "確認", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
@@ -101,10 +119,11 @@ namespace SKYNST_CharaRecog
                 //点字フォントの後処理
                 pfc.Dispose();
             }
-        }//100行目
+        }//120行目
 
+            /*================ ↓以下、各UIのイベント↓ ================*/
 
-        //================ ↓以下、各UIのイベント↓ ================
+        //611行
 
         //●『カメラ起動』ボタン：クリックイベント
         private void button_webcam_Click(object sender, EventArgs e)
@@ -119,7 +138,7 @@ namespace SKYNST_CharaRecog
 
 
 
-        }//118行目
+        }//626行目
 
         //●『参照』ボタン：クリックイベント
         private void button_brows_Click(object sender, EventArgs e)
@@ -134,7 +153,7 @@ namespace SKYNST_CharaRecog
 
 
 
-        }//133行目     
+        }//641行目     
 
         //●『画像表示』ボタン：クリックイベント
         private void button_show_Click(object sender, EventArgs e)
@@ -149,7 +168,7 @@ namespace SKYNST_CharaRecog
 
 
 
-        }//148行目
+        }//656行目
 
         //●『出力』ボタン：クリックイベント
         private void button_output_Click(object sender, EventArgs e)
@@ -164,7 +183,7 @@ namespace SKYNST_CharaRecog
 
 
 
-        }//163行目
+        }//671行目
 
         //●『解析』ボタン：クリックイベント
         private void button_start_Click(object sender, EventArgs e)
@@ -179,7 +198,7 @@ namespace SKYNST_CharaRecog
 
 
 
-        }//178行目
+        }//686行目
 
 
         /*================ ↓メニューバーのイベント↓ ================*/
@@ -209,23 +228,25 @@ namespace SKYNST_CharaRecog
 
         }
 
-        private void 戻るToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void 進むToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
+
+
+
+
+
+
 
         private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            version_info();
         }
 
 
         /*================ 以下、自作のメソッド ================*/
+
+        //734行
 
         //●入力されたパスの画像をピクチャボックスに表示するメソッド
         //・戻り値 true ：画像の読み込みに成功
@@ -245,24 +266,12 @@ namespace SKYNST_CharaRecog
                 return false;
             }
 
-            //ラジオボタンを使用可能にする
-            radioButton_all.Enabled = true;
-            radioButton_eng.Enabled = true;
-            radioButton_jpn.Enabled = true;
-            //『全て』ラジオボタンにチェックマークを付ける
-            radioButton_all.Checked = true;
+            //各UIのEnabale状態を変更
+            nowdo_flag = 0;
+            enable_change();
 
-            //解析ボタンを押下可能にする;
-            button_start.Enabled = true;
-            
-            //出力ボタン・読み上げボタンを押下不可にする
-            button_output.Enabled = false;
-            出力OToolStripMenuItem.Enabled = false;
-            button_readout.Enabled = false;
-            tenji_export.Enabled = false;//点字出力無効化
             return true;
         }
-
 
         //●ウェブカメラフォームを起動するメソッド
         private void webcam_open()
@@ -279,22 +288,20 @@ namespace SKYNST_CharaRecog
                 pictureBox.Image = image;
             }
 
-            //ラジオボタンを使用可能にする
-            radioButton_all.Enabled = true;
-            radioButton_eng.Enabled = true;
-            radioButton_jpn.Enabled = true;
-            //『全て』ラジオボタンにチェックマークを付ける
-            radioButton_all.Checked = true;
-
-            //解析ボタンを押下可能にする;
+            //各UIのEnabale状態を変更
+            nowdo_flag = 0;
+            enable_change();
+                        //解析ボタンを押下可能にする;
             button_start.Enabled = true;
-
+            
             //出力ボタン・読み上げボタンを押下不可にする
             button_output.Enabled = false;
             出力OToolStripMenuItem.Enabled = false;
             button_readout.Enabled = false;
+            tenji_export.Enabled = false;//点字出力無効化
+            //return true;
+        
         }
-
 
         //●参照フォームを起動するメソッド
         private void brows_open()
@@ -322,7 +329,6 @@ namespace SKYNST_CharaRecog
             }
         }
 
-
         //●文字認識を行うメソッド
         //・引数    Bitmap img：文字認識処理対象の画像を指定する
         private void chara_recog_start(Bitmap img)
@@ -331,33 +337,49 @@ namespace SKYNST_CharaRecog
             textBox_result.Text = "解析中...";
             this.Refresh();
 
-            //『English』のチェックボックスがチェックされているかの判定
-            if (radioButton_eng.Checked)
+            try
             {
-                // Englishにチェックが入っている
-                // →engの言語データで文字認識処理を行う
-                textBox_result.Text = chara_recog(img, "eng");
+                //『English』のチェックボックスがチェックされているかの判定
+                if (radioButton_eng.Checked)
+                {
+                    // Englishにチェックが入っている
+                    // →engの言語データで文字認識処理を行う
+                    textBox_result.Text = chara_recog(img, "eng");
+                }
+                else
+                {
+                    // Englishにチェックが入っていない
+                    // →jpnの言語データで文字認識処理を行う
+                    textBox_result.Text = chara_recog(img, "jpn");
+                }
+                //処理が完了したことを知らせるメッセージボックスを表示
+                MessageBox.Show("解析が終了しました！", "解析終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                normal_str = textBox_result.Text; //解析時の文字列を保持
+                //出力ボタンを押下可能にする
+                button_output.Enabled = true;
+                出力OToolStripMenuItem.Enabled = true;
+                //読み上げボタンを押下可能にする
+                button_readout.Enabled = true;
+                //点字出力を操作可能にする,チェックが入ってたら外す,点字変換フラグを戻す
+                tenji_export.Enabled = true; tenji_export.Checked = false; tenji_flag = -1;
+                //保存フラグを1（保存前）にする
+                save_flag = 1;
             }
-            else
+            catch (Exception e)
             {
-                // Englishにチェックが入っていない
-                // →jpnの言語データで文字認識処理を行う
-                textBox_result.Text = chara_recog(img, "jpn");
+                // 読み込めない画像が入力された場合、エラーを出力
+                MessageBox.Show("例外が発生しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox_result.Text = "";// リザルトテキストを空にする
+                return;// メソッド終了
             }
 
             //処理が完了したことを知らせるメッセージボックスを表示
             MessageBox.Show("解析が終了しました！", "解析終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            normal_str = textBox_result.Text; //解析時の文字列を保持
-            //出力ボタンを押下可能にする
-            button_output.Enabled = true;
-            出力OToolStripMenuItem.Enabled = true;
-            //読み上げボタンを押下可能にする
-            button_readout.Enabled = true;
-            //点字出力を操作可能にする,チェックが入ってたら外す,点字変換フラグを戻す
-            tenji_export.Enabled = true; tenji_export.Checked = false; tenji_flag = -1;
-            //保存フラグを1（保存前）にする
-            save_flag = 1;
-        }//311行
+
+            //各UIのEnabale状態を変更
+            nowdo_flag = 1;
+            enable_change();
+        }
 
         //●文字認識処理
         //・引数  Bitmap img ：文字認識処理対象の画像を指定する
@@ -366,23 +388,22 @@ namespace SKYNST_CharaRecog
         private string chara_recog(Bitmap img, string lang)
         {
             //文字認識結果を格納する変数
-            string str;
+            string str = "";
 
             // OCRを行うオブジェクトの生成
             //  言語データの場所と言語名を引数で指定する
             var tesseract = new Tesseract.TesseractEngine(
                 @"..\..\..\tessdata", // 言語ファイルを「C:\tessdata」に置いた場合
                 lang);         // 英語なら"eng" 「○○.traineddata」の○○の部分
-
+   
             // OCRの実行と表示
             var page = tesseract.Process(img);
             str = page.GetText();
 
             //文字認識結果を返す
             return str;
-        }//311行
-
-
+        }
+        
         //●ファイル出力（保存）を行うメソッド
         private void save()
         {
@@ -405,11 +426,10 @@ namespace SKYNST_CharaRecog
                 writer.WriteLine(textBox_result.Text);//ここにtesseractから送られてきた文字をぶち込む//
                 writer.Close();
 
-                // 保存フラグを2（保存後）にする
-                save_flag = 2;
+                // 処理フラグを2（保存後）にする
+                nowdo_flag = 2;
             }
         }
-
 
         // ●終了確認を行うメソッド
         private bool quit()
@@ -423,6 +443,149 @@ namespace SKYNST_CharaRecog
             return true;
         }
 
+        // ●各UIのEnable操作を行うメソッド
+        private void enable_change()
+        {
+            // 0：読上、保存ボタンのみEnable=false
+            // 1：全てEnable=true
+            // 2：状態２のまま
+            switch (nowdo_flag)
+            {
+                case 0://画像表示後
+                    radioButton_all.Enabled = true;
+                    radioButton_eng.Enabled = true;
+                    radioButton_jpn.Enabled = true;//各ラジオボタンを可にする
+                    radioButton_all.Checked = true;//『全て』ラジオボタンのみチェックを付ける
+
+                    button_start.Enabled = true;//『解析』ボタンを可にする
+
+                    button_readout.Enabled = false;//『読み上げ』ボタンを不可にする
+                    button_output.Enabled = false;//『保存』ボタンを不可にする
+
+                    textBox_result.Text = "";//リザルトのテキストをリセットする
+                    break;
+                case 1://解析後
+                    button_readout.Enabled = true;//『読み上げ』ボタンを不可にする
+                    button_output.Enabled = true;//『保存』ボタンを不可にする
+                    break;
+                case 2:
+                    break;
+            }
+        }
+
+        // ●バージョン情報を表示するメソッド
+        private void version_info()
+        {
+            MessageBox.Show("文字認識システム\nVersion1.0\nSKYNST (System Knowledge Young geNeration Student Team)", "バージョン情報", MessageBoxButtons.OK);
+        }
+
+        // ●読み上げを行うメソッド
+        private void button_readout_Click(object sender, EventArgs e)
+        {
+            if (System.Diagnostics.Process.GetProcessesByName("BouyomiChan").Length <= 0)//棒読みちゃん起動していなければ起動
+            {
+                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo();
+                psi.FileName = @"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\BouyomiChan.exe";
+                psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;
+                System.Diagnostics.Process p = System.Diagnostics.Process.Start(psi);
+                System.Threading.Thread.Sleep(5000);
+            }
+            System.Diagnostics.ProcessStartInfo qsi = new System.Diagnostics.ProcessStartInfo();
+            qsi.FileName = @"..\..\..\packages\BouyomiChan_0_1_11_0_Beta16\RemoteTalk\RemoteTalk.exe";
+            qsi.Arguments = String.Format("/T {0}", textBox_result.Text);
+            qsi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            System.Diagnostics.Process q = System.Diagnostics.Process.Start(qsi);
+        }
+
+
+        //●ドラッグアンドドロップの処理―――――――――――――――――
+        private void textBox_pass_DragEnter(object sender, DragEventArgs e)
+        {
+            //ファイルがドラッグされている場合、カーソルを変更する。
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // ドラッグ中のファイルやディレクトリの取得
+                string[] drags = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach (string d in drags)
+                {
+                    if (!System.IO.File.Exists(d))
+                    {
+                        // ファイル以外であればイベント・ハンドラを抜ける
+                        return;
+                    }
+                }
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void textBox_pass_DragDrop(object sender, DragEventArgs e)
+        {
+            //ドロップされたファイルの一覧を取得
+            string[] fileName = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (fileName.Length <= 0)
+            {
+                return;
+            }
+            if (System.IO.File.Exists(fileName[0]) == true)
+            {
+                //ドロップ先がTextBoxであるかチェック
+                TextBox txtTarget = sender as TextBox;
+                if (txtTarget == null)
+                {
+                    return;
+                }
+                //TextBoxの内容をファイル名に変更
+                txtTarget.Text = fileName[0];
+                if (image_show() == false)
+                {//画像以外のファイルをD&Dした場合、表記を元に戻す
+                    textBox_pass.Text = "C:\\....";
+                    return;
+                }
+            }
+        }
+        
+        private void Form1_DragEnter(object sender, DragEventArgs e)//D&Dを行うためのイベント（DragDropと同時使用）
+        {
+
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // ドラッグ中のファイルやディレクトリの取得
+                string[] drags = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach (string d in drags)
+                {
+                    if (!System.IO.File.Exists(d))
+                    {
+                        // ファイル以外であればイベント・ハンドラを抜ける
+                        return;
+                    }
+                }
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void Form1_DragDrop(object sender, DragEventArgs e)//D&Dを行うためのイベント（DragEnterと同時使用）
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (System.IO.File.Exists(files[0]) == true)
+            {
+
+                //D&Dしてきたファイル名をテキストボックスに表示
+
+                textBox_pass.Text = files[0];
+
+                if (image_show() == false)
+                {//画像以外のファイルをD&Dした場合、表記を元に戻す
+                    textBox_pass.Text = "C:\\....";
+                    return;
+                }
+            }
+        }
+        //――――――――――――――――――――――――――――――――
+        //207行目
+
+        /*================ ↓点字処理のイベント↓ ================*/
         private void tenji_export_CheckedChanged(object sender, EventArgs e)
         {
            
@@ -1217,5 +1380,6 @@ namespace SKYNST_CharaRecog
             }
         }
         // ●各UIのEnable操作を行うメソッド
+
     }
 }

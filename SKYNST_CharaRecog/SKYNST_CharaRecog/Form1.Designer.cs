@@ -45,8 +45,6 @@
             this.閉じるToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.編集ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.トリミングTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.戻るToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.進むToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.バージョン情報ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_show = new System.Windows.Forms.Button();
@@ -113,11 +111,14 @@
             // 
             // textBox_pass
             // 
+            this.textBox_pass.AllowDrop = true;
             this.textBox_pass.Location = new System.Drawing.Point(12, 59);
             this.textBox_pass.Name = "textBox_pass";
             this.textBox_pass.Size = new System.Drawing.Size(266, 19);
             this.textBox_pass.TabIndex = 3;
             this.textBox_pass.Text = "C:\\.....";
+            this.textBox_pass.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBox_pass_DragDrop);
+            this.textBox_pass.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBox_pass_DragEnter);
             // 
             // textBox_result
             // 
@@ -194,9 +195,7 @@
             // 編集ToolStripMenuItem
             // 
             this.編集ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.トリミングTToolStripMenuItem,
-            this.戻るToolStripMenuItem,
-            this.進むToolStripMenuItem});
+            this.トリミングTToolStripMenuItem});
             this.編集ToolStripMenuItem.Name = "編集ToolStripMenuItem";
             this.編集ToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.編集ToolStripMenuItem.Text = "編集(&E)";
@@ -208,25 +207,11 @@
             this.トリミングTToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.トリミングTToolStripMenuItem.Text = "トリミング(&T)...";
             this.トリミングTToolStripMenuItem.Click += new System.EventHandler(this.トリミングTToolStripMenuItem_Click);
-            // 
-            // 戻るToolStripMenuItem
-            // 
-            this.戻るToolStripMenuItem.Name = "戻るToolStripMenuItem";
-            this.戻るToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.戻るToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.戻るToolStripMenuItem.Text = "元に戻す(&U)";
-            this.戻るToolStripMenuItem.Click += new System.EventHandler(this.戻るToolStripMenuItem_Click);
-            // 
-            // 進むToolStripMenuItem
-            // 
-            this.進むToolStripMenuItem.Name = "進むToolStripMenuItem";
-            this.進むToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.進むToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.進むToolStripMenuItem.Text = "やり直し(&R)";
-            this.進むToolStripMenuItem.Click += new System.EventHandler(this.進むToolStripMenuItem_Click);
+            
             // 
             // HelpToolStripMenuItem
-            // 
+            //
+            
             this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.バージョン情報ToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
@@ -300,6 +285,7 @@
             this.button_readout.TabIndex = 6;
             this.button_readout.Text = "読み上げ";
             this.button_readout.UseVisualStyleBackColor = true;
+            this.button_readout.Click += new System.EventHandler(this.button_readout_Click);
             // 
             // tenji_export
             // 
@@ -315,6 +301,7 @@
             // 
             // Form1
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 524);
@@ -338,6 +325,8 @@
             this.Name = "Form1";
             this.Text = "文字認識システム";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -370,8 +359,6 @@
         private System.Windows.Forms.Button button_show;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem 戻るToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 進むToolStripMenuItem;
         private System.Windows.Forms.RadioButton radioButton_jpn;
         private System.Windows.Forms.RadioButton radioButton_eng;
         private System.Windows.Forms.RadioButton radioButton_all;
